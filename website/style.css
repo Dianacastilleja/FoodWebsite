@@ -5,11 +5,16 @@ body, ul, li {
     list-style: none;
 }
 
-/* Style the banner */
-.banner {
-    background-color: #EFEFEF;
+/* Style the banner container */
+.banner-container {
+    background-color: navy;
     text-align: center;
-    padding: 40px;
+    padding: 40px 0; /* Adjust the padding as needed */
+}
+/* Style the banner text */
+.banner-text {
+    font-size: 28px;
+    color: white;
 }
 
 .banner h1 {
@@ -18,7 +23,7 @@ body, ul, li {
 
 /* Style the navigation tabs */
 .tabs {
-    background-color: #333;
+    background-color: #333; /* Use a hex code for color */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +47,7 @@ body, ul, li {
 }
 
 .restaurant-images img {
-    width: 200px;
-    height: 150px;
+    width: 200px; /* Set the desired width, e.g., 200px */
+    height: 150px; /* Set the desired height, e.g., 150px */
     margin: 10px;
 }
