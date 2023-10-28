@@ -1,0 +1,48 @@
+/* Reset some default styles */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Style the banner */
+.banner {
+    background-color: #EFEFEF;
+    text-align: center;
+    padding: 40px;
+}
+
+.banner h1 {
+    font-size: 28px;
+}
+
+/* Style the navigation tabs */
+.tabs {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabs li {
+    margin: 10px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Style the restaurant images section */
+.restaurant-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurant-images img {
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+}
