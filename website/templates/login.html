@@ -14,14 +14,18 @@
 
         .login-box {
             background-color: white;
-            padding: 40px; /* Increased padding for a larger box */
+            padding: 40px;
             border-radius: 10px;
             text-align: center;
-            width: 400px; /* Increased width */
+            width: 400px;
         }
 
         .login-box h2 {
             font-weight: bold;
+        }
+
+        .login-box .links {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -33,11 +37,15 @@
             <input type="text" id="username" name="username" required><br><br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name "password" required><br><br>
+            <input type="password" id="password" name="password" required><br><br>
 
             <input type="submit" value="Login">
         </form>
+        
+        <div class="links">
+            <a href="/signup">Create Account</a> |
+            <a href="/">Home</a>
+        </div>
     </div>
 </body>
 </html>
-
