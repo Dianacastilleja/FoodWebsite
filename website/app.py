@@ -86,5 +86,13 @@ def update_contact_preference():
     
     return redirect('/settings')
 
+
+
+# All Resturaunt Re-Route buttons
+@app.route('/R1')
+def R1():
+    # Render the settings page and pass user settings to the template
+    return render_template('R1.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

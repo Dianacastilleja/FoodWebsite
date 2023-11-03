@@ -9,6 +9,26 @@ body {
     padding: 20px;
 }
 
+
+.banner1 {
+    background-color: rgb(167, 26, 26);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    
+    
+}
+
+.banner1 img[src*="cfaWhiteText.PNG"] {
+    max-width: 200px; /* Adjust the maximum width as needed */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+
+
+
+
+
 .tabs {
     background-color: #f5f5f5;
     text-align: center;
