@@ -88,11 +88,27 @@ def update_contact_preference():
 
 
 
-# All Resturaunt Re-Route buttons
+# Route for All Restaurants
+
+#Chick Fil A
 @app.route('/R1')
 def R1():
     # Render the settings page and pass user settings to the template
     return render_template('R1.html')
+
+#Jack In The Box
+@app.route('/R2')
+def R2():
+    # Render the settings page and pass user settings to the template
+    return render_template('R2.html')
+
+#Pizza Hut
+@app.route('/R3')
+def R3():
+    # Render the settings page and pass user settings to the template
+    return render_template('R3.html')
+
+# Revolution Noodle
 
 if __name__ == '__main__':
     app.run(debug=True)
