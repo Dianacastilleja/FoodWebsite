@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Welcome Page</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add your custom styles here */
+        .food-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Adjust alignment as needed */
+        }
+
+        .food-column {
+            flex: 0 0 30%; /* Adjust the width based on your design */
+            box-sizing: border-box;
+            padding: 10px;
+            margin-bottom: 20px; /* Add margin to separate rows */
+            text-align: center; /* Center content */
+            overflow: hidden; /* Clear floats */
+            height: 300px; /* Set a fixed height */
+        }
+
+        .food-image {
+            width: 100%; /* Adjust the width based on your design */
+            height: 70%; /* Set the image height */
+            object-fit: contain; /* Maintain aspect ratio and fit within the container */
+        }
+
+        .food-price {
+            text-align: center;
+        }
+
+        .add-to-order {
+            display: inline-block;
+            margin: 10px auto;
+            padding: 10px 20px; /* Adjust padding for the bubble-like appearance */
+            background-color: #4CAF50; /* Green color, you can customize */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 20px; /* Adjust border-radius for the rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+
+    </style>
 </head>
+
 <body>
     <div class="banner1">
-       <!-- 
-        <h1>You have been re-routed to Chick-Fil-A</h1>
-       -->
+        <!-- <h1>You have been re-routed to Chick-Fil-A</h1> -->
         <img src="static\cfaWhiteText.PNG" alt="Restaurant 1">
     </div>
     <div class="tabs">
@@ -17,13 +59,77 @@
         <a href="/driver_signup">Driver Sign Up</a>
         <a href="/settings">Settings</a>
     </div>
-    <div class="slideshow">
-        <div class="slideshow">
-            <div class="restaurant">
-                <!-- <img src="static\chikFilA.PNG" alt="Restaurant 1"> -->
-            </div>
-            <!-- Add more restaurant images as needed -->
-        </div>        
-    </div>
+    <div class="food-columns">
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick1.PNG" alt="Food 1">
+            <div class="food-price">$4.75</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick2.PNG" alt="Food 2">
+            <div class="food-price">$5.50</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick3.PNG" alt="Food 2">
+            <div class="food-price">$4.75</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick4.PNG" alt="Food 2">
+            <div class="food-price">$8.99</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick5.PNG" alt="Food 2">
+            <div class="food-price">$11.90</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick6.PNG" alt="Food 2">
+            <div class="food-price">$12.99</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick7.PNG" alt="Food 2">
+            <div class="food-price">$5.99</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick8.PNG" alt="Food 2">
+            <div class="food-price">$5.99</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick9.PNG" alt="Food 2">
+            <div class="food-price">$9.00</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick10.PNG" alt="Food 2">
+            <div class="food-price">$10.80</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+        <div class="food-column">
+            <img class="food-image" src="static\ChikFilaAFood\chick11.PNG" alt="Food 2">
+            <div class="food-price">$11.99</div>
+            <a class="add-to-order" href="#">Add to Order</a>
+        </div>
+     <!----   <ul>---->
+     <!---{% set total_price = 0 %}
+            {% for item in ordered_items %}
+                <li>{{ item.food_item }} - ${{ item.price }}</li>
+                {% set total_price = total_price + item.price %}
+            {% endfor %}
+        </ul>
+        
+        <p>Total: ${{ total_price }}</p>
+        
+        <form action="/submit_order" method="post">
+            <input type="submit" value="Submit Order">
+        </form>  ----->
+        
 </body>
+
 </html>
+

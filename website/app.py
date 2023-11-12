@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
+ordered_items = []
+
 # Define a dictionary to simulate user settings (replace with database interaction).
 user_settings = {
     "email": "user@example.com",
@@ -42,8 +44,10 @@ def driver_register():
     driver_license = request.form['driver_license']
     account_number = request.form['account_number']
     routing_number = request.form['routing_number']
-    
-    # Perform necessary validation and database operations
+
+    # Assuming successful registration, you may want to redirect to a success page
+    return redirect('/success')
+
 
 @app.route('/settings')
 def settings():
@@ -91,21 +95,42 @@ def update_contact_preference():
 # Route for All Restaurants
 
 #Chick Fil A
-@app.route('/R1')
+@app.route('/R1', methods=['GET', 'POST'])
 def R1():
-    # Render the settings page and pass user settings to the template
-    return render_template('R1.html')
+    if request.method == 'POST':
+        food_item = request.form['food_item']
+        price = float(request.form['price'])
+
+        ordered_items.append({
+            'food_item': food_item,
+            'price': price
+        })
+
+    return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
+# Route for submitting the order
+@app.route('/submit_order', methods=['POST'])
+def submit_order():
+    # Assuming you want to perform some action when the order is submitted
+    # For now, let's print the ordered items and total price to the console
+    for item in ordered_items:
+        print(f"Price: ${item['price']}")
+
+    total_price = sum(item['price'] for item in ordered_items)
+    print(f"Total Price: ${total_price}")
+
+    # Clear the ordered_items list for the next order
+    ordered_items.clear()
+
+    return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
 
 #Jack In The Box
 @app.route('/R2')
 def R2():
-    # Render the settings page and pass user settings to the template
     return render_template('R2.html')
 
 #Pizza Hut
 @app.route('/R3')
 def R3():
-    # Render the settings page and pass user settings to the template
     return render_template('R3.html')
 
 # Revolution Noodle
