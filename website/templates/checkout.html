@@ -1,0 +1,26 @@
+<!-- Inside checkout.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include any additional styles or scripts you need for the checkout page -->
+</head>
+
+<body>
+    <h1>Checkout</h1>
+
+    <ul>
+        {% for item in ordered_items %}
+            <li>{{ item['food_item'] }} - ${{ item['price'] }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>Total Price: ${{ total_price }}</p>
+
+    <!-- Add any additional elements or buttons as needed -->
+
+</body>
+
+</html>
