@@ -67,9 +67,10 @@
     </div>
     <div class="food-columns">
 
+        <!-- Pepperoni Pizza -->
         <div class="food-column">
             <form method="post" action="/R3">
-            <img class="food-image" src="static/pizzaFood/pizza1.png" alt="Food 1">
+            <img class="food-image" src="static/pizzaFood/pizza1.png" alt="Food 1" style="width: 300px; height: 200px;">
             <div class="food-name">Pepperoni Pizza </div>
             <div class="food-price">$4.75</div>
              <!-- Add hidden input fields to store the food item's name and price -->
@@ -78,43 +79,82 @@
             <button type="submit" class="add-to-order">Add to Order</button>
             </form>
         </div>
-
+        <!-- Cheese Pizza -->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/pizza2.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/pizza2.png" alt="Food 2" style="width: 300px; height: 200px;">
             <div class="food-name">Cheese Pizza </div>
             <div class="food-price">$5.50</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+             <!-- Add hidden input fields to store the food item's name and price -->
+            <input type="hidden" name="food_item" value="Cheese Pizza">
+            <input type="hidden" name="price" value="5.50">
+            <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
-        <!-- Add more food-columns as needed -->
+
+        <!-- Supreme Pizza-->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/pizza3.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/pizza3.png" alt="Food 3" style="width: 300px; height: 200px;">
             <div class="food-name">Supreme Pizza</div>
             <div class="food-price">$4.75</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+             <!-- Add hidden input fields to store the food item's name and price -->      
+             <input type="hidden" name="food_item" value="Supreme Pizza">
+             <input type="hidden" name="price" value="4.75">
+             <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
+
+        <!-- Meat Lover's -->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/pizza4.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/pizza4.png" alt="Food 4" style="width: 300px; height: 200px;">
             <div class="food-name">Meat Lovers</div>
             <div class="food-price">$8.99</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+             <!-- Add hidden input fields to store the food item's name and price -->    
+             <input type="hidden" name="food_item" value="Meat Lover's">
+             <input type="hidden" name="price" value="8.99">
+             <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
+
+        <!-- Hawaiin Pizza -->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/pizza5.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/pizza5.png" alt="Food 5" style="width: 300px; height: 200px;">
             <div class="food-name">Hawaiian Pizza</div>
             <div class="food-price">$11.90</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+             <!-- Add hidden input fields to store the food item's name and price -->    
+             <input type="hidden" name="food_item" value="Hawaiin Pizza">
+             <input type="hidden" name="price" value="11.99">
+             <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
+
+        <!-- Chicken Alfredo -->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/chickenAlfredo.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/chickenAlfredo.png" alt="Food 6" style="width: 300px; height: 200px;">
             <div class="food-name">Chicken Alfredo</div>
             <div class="food-price">$12.99</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+            <!-- Add hidden input fields to store the food item's name and price -->            
+            <input type="hidden" name="food_item" value="Chicken Alfredo">
+            <input type="hidden" name="price" value="12.99">
+            <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
+
+        <!-- Chicken Wings -->
         <div class="food-column">
-            <img class="food-image" src="static/pizzaFood/wings.png" alt="Food 2">
+            <form method="post" action="/R3">
+            <img class="food-image" src="static/pizzaFood/wings.png" alt="Food 7" style="width: 300px; height: 200px;">
             <div class="food-name">Chicken Wings</div>
             <div class="food-price">$5.99</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+            <!-- Add hidden input fields to store the food item's name and price --> 
+            <input type="hidden" name="food_item" value="Chicken Wings">
+            <input type="hidden" name="price" value="5.99">
+            <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
 </body>
 </html>
