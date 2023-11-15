@@ -129,11 +129,26 @@ def R2():
     return render_template('R2.html')
 
 #Pizza Hut
-@app.route('/R3')
+@app.route('/R3', methods=['GET', 'POST'])
 def R3():
-    return render_template('R3.html')
+    if request.method == 'POST':
+        food_item = request.form['food_item']
+        price = float(request.form['price'])
+
+        ordered_items.append({
+            'food_item': food_item,
+            'price': price
+        })
+    return render_template('R3.html', user_settings=user_settings)
 
 # Revolution Noodle
+
+
+# Route for the checkout page
+@app.route('/checkout')
+def checkout():
+    total_price = sum(item['price'] for item in ordered_items)
+    return render_template('checkout.html', ordered_items=ordered_items, total_price=total_price)
 
 if __name__ == '__main__':
     app.run(debug=True)

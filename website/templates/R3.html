@@ -62,14 +62,23 @@
         <a href="/signup">Sign Up</a>
         <a href="/driver_signup">Driver Sign Up</a>
         <a href="/settings">Settings</a>
+        <a href="/checkout"><button>Checkout</button></a>
+        
     </div>
     <div class="food-columns">
+
         <div class="food-column">
+            <form method="post" action="/R3">
             <img class="food-image" src="static/pizzaFood/pizza1.png" alt="Food 1">
             <div class="food-name">Pepperoni Pizza </div>
             <div class="food-price">$4.75</div>
-            <a class="add-to-order" href="#">Add to Order</a>
+             <!-- Add hidden input fields to store the food item's name and price -->
+            <input type="hidden" name="food_item" value="Pepperoni Pizza">
+            <input type="hidden" name="price" value="4.75">
+            <button type="submit" class="add-to-order">Add to Order</button>
+            </form>
         </div>
+
         <div class="food-column">
             <img class="food-image" src="static/pizzaFood/pizza2.png" alt="Food 2">
             <div class="food-name">Cheese Pizza </div>
