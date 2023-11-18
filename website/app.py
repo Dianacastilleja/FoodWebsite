@@ -107,6 +107,7 @@ def R1():
         })
 
     return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
+
 # Route for submitting the order
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
@@ -123,10 +124,20 @@ def submit_order():
 
     return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
 
+
+
 #Jack In The Box
-@app.route('/R2')
+@app.route('/R2',  methods=['GET', 'POST'])
 def R2():
-    return render_template('R2.html')
+    if request.method == "POST":
+        food_item = request.form["food_item"]
+        price = float(request.form['price'])
+
+        ordered_items.append({
+            'food_item': food_item,
+            'price': price
+        })
+    return render_template('R2.html', user_settings=user_settings)
 
 #Pizza Hut
 @app.route('/R3', methods=['GET', 'POST'])
