@@ -4,8 +4,68 @@
 
 <head>
     <title>Checkout</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #66ff66; /* Light green background color */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checkout-banner {
+            background-color: #4CAF50; /* Dark green banner color */
+            color: white; /* Text color */
+            padding: 20px; /* Adjust padding as needed */
+        }
+
+        .checkout-container {
+            border: 2px solid #4CAF50; /* Dark green border color */
+            background-color: #e6ffe6; /* Lighter green background color */
+            padding: 20px;
+            margin: 0 auto; /* Center the container */
+            max-width: 600px; /* Set a maximum width for the container */
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
     <!-- Include any additional styles or scripts you need for the checkout page -->
+    <script>
+        function redirectToSuccessPage() {
+            // Use window.location.href to redirect to the Success page
+            window.location.href = '/success'; // Update the URL as needed
+        }
+    </script>
 </head>
 
 <body>
@@ -13,13 +73,17 @@
 
     <ul>
         {% for item in ordered_items %}
-            <li>{{ item['food_item'] }} - ${{ item['price'] }}</li>
+            <!-- Use the float filter to ensure the value is a float before rounding -->
+            <!-- Use string concatenation for formatting -->
+            <li>{{ item['food_item'] }} - ${{ "%0.2f"|format(item['price']|float) }}</li>
         {% endfor %}
     </ul>
 
-    <p>Total Price: ${{ total_price }}</p>
+    <!-- Use string concatenation for formatting total_price -->
+    <p>Total Price: ${{ "%0.2f"|format(total_price|float) }}</p>
 
-    <!-- Add any additional elements or buttons as needed -->
+    <!-- Submit order button with onclick event to trigger the redirection -->
+    <button type="submit" onclick="redirectToSuccessPage()">Submit Order</button>
 
 </body>
 

@@ -107,6 +107,7 @@ def R1():
         })
 
     return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
+<<<<<<< HEAD
 
 # Route for submitting the order
 @app.route('/submit_order', methods=['POST'])
@@ -115,14 +116,9 @@ def submit_order():
     # For now, let's print the ordered items and total price to the console
     for item in ordered_items:
         print(f"Price: ${item['price']}")
+=======
+>>>>>>> Diana
 
-    total_price = sum(item['price'] for item in ordered_items)
-    print(f"Total Price: ${total_price}")
-
-    # Clear the ordered_items list for the next order
-    ordered_items.clear()
-
-    return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
 
 
 
@@ -152,7 +148,26 @@ def R3():
         })
     return render_template('R3.html', user_settings=user_settings)
 
-# Revolution Noodle
+# Route for submitting the order
+@app.route('/submit_order', methods=['POST'])
+def submit_order():
+    # Assuming you want to perform some action when the order is submitted
+    # For now, let's print the ordered items and total price to the console
+    for item in ordered_items:
+        print(f"Price: ${item['price']}")
+
+    total_price = sum(item['price'] for item in ordered_items)
+    print(f"Total Price: ${total_price}")
+
+    # Clear the ordered_items list for the next order
+    ordered_items.clear()
+
+    return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
+
+# Route for the success page
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
 
 # Route for the checkout page
