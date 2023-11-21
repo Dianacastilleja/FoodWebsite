@@ -247,7 +247,6 @@ def R1():
 
     return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
 
-
 # # Route for submitting the order
 # @app.route('/submit_order', methods=['POST'])
 # def submit_order():
