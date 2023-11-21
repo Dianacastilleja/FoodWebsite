@@ -26,8 +26,8 @@ class Visitor(db.Model):
     #rewards = []
     email = db.Column(db.String(100),default="mail")
     password = db.Column(db.String(100),default="password")
-    phone = db.Column(db.Integer, default=1, primary_key=True)
-    creditCard = db.Column(db.Integer,default=1)
+    phone = db.Column(db.String, default=1, primary_key=True)
+    creditCard = db.Column(db.String,default=1)
     address = db.Column(db.String(100),default="street" )
 
     def __repr__(self):
@@ -245,7 +245,10 @@ def R1():
             'price': price
         })
 
-    return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
+    signedIn = False
+    if user_settings["name"] != "":
+        signedIn = True
+    return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items,signedIn=signedIn)
 
 # # Route for submitting the order
 # @app.route('/submit_order', methods=['POST'])
@@ -269,7 +272,11 @@ def R2():
             'food_item': food_item,
             'price': price
         })
-    return render_template('R2.html', user_settings=user_settings)
+
+    signedIn = False
+    if user_settings["name"] != "":
+        signedIn = True
+    return render_template('R2.html', user_settings=user_settings,signedIn=signedIn)
 
 #Pizza Hut
 @app.route('/R3', methods=['GET', 'POST'])
@@ -282,7 +289,11 @@ def R3():
             'food_item': food_item,
             'price': price
         })
-    return render_template('R3.html', user_settings=user_settings)
+
+    signedIn = False
+    if user_settings["name"] != "":
+        signedIn = True
+    return render_template('R3.html', user_settings=user_settings,signedIn=signedIn)
 
 # Route for submitting the order
 @app.route('/submit_order', methods=['POST'])
