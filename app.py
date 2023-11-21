@@ -18,7 +18,7 @@ user_settings = {
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 db = SQLAlchemy(app)
-
+ord = SQLAlchemy(app)
 
 class Visitor(db.Model):
     name = db.Column(db.String(100),default="name")
