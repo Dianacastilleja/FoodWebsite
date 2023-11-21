@@ -58,7 +58,11 @@
         <a href="/signup">Sign Up</a>
         <a href="/driver_signup">Driver Sign Up</a>
         <a href="/settings">Settings</a>
+        {%if signedIn%}
         <a href="/checkout"><button>Checkout</button></a>
+        {%else%}
+        <a href="/signup"><button>Checkout</button></a>
+        {%endif%}
     </div>
     <div class="food-columns">
         <!-- Chick Fil A Chicken Sandwich -->
