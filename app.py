@@ -18,7 +18,7 @@ user_settings = {
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 db = SQLAlchemy(app)
-ord = SQLAlchemy(app)
+#ord = SQLAlchemy(app)
 
 class Visitor(db.Model):
     name = db.Column(db.String(100),default="name")
@@ -32,8 +32,8 @@ class Visitor(db.Model):
     def __repr__(self):
         return f"{self.name}"
 
-class Order():
-    pass
+#class Order():
+ #   pass
 
 # Route for the welcome page
 @app.route('/')
