@@ -44,8 +44,39 @@
 </head>
 <body>
     <div class="login-box">
+    <h2>Sign Up</h2>
+    <form method="post">
+        <br/><br/>
+        First Name:<input name="first"required>
+        <!-- <br/><br/> -->
+        Last Name:<input name="last"required>
+        <!-- <br/><br/> -->
+        Email:<input name="email"required>
+        <!-- <br/><br/> -->
+        Password:<input name="password"required>
+        <!-- <br/><br/> -->
+        Phone Number:<input name="phone"required>
+        <!-- <br/><br/> -->
+        Credit Card Number:<input name="credit"required>
+        Address:<input name="address"required>
+        
+        <button type="submit">Submit</button>
+        
+{% if taken %} 
+phone taken
+ {% endif %}
+ <div class="links">
+    <a href="/">Home</a> | <a href="/login">Already have an account?</a>
+</div>  
+      </form>
+
+
+    <!-- </div> -->
+     
+    <!-- <div class="login-box">
         <h2>Sign Up</h2>
-        <form action="/register" method="post">
+        <form  method="post"id="personal"> 
+            action="/login"
             <label for="first-name">First Name:</label>
             <input type="text" id="first-name" name="first_name" required>
 
@@ -55,18 +86,18 @@
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" required>
 
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" required>
+
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
             <label for="credit-card">Credit Card:</label>
             <input type="text" id="credit-card" name="credit_card">
 
-            <input type="submit" value="Sign Up">
+            <button type="submit">Submit</button>
         </form>
-        
-        <div class="links">
-            <a href="/">Home</a> | <a href="/login">Already have an account?</a>
-        </div>
-    </div>
+    </div> -->
+    <!-- </div> -->
 </body>
 </html>
