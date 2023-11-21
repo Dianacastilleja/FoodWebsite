@@ -108,13 +108,13 @@ def R1():
 
     return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items)
 
-# Route for submitting the order
-@app.route('/submit_order', methods=['POST'])
-def submit_order():
-    # Assuming you want to perform some action when the order is submitted
-    # For now, let's print the ordered items and total price to the console
-    for item in ordered_items:
-        print(f"Price: ${item['price']}")
+# # Route for submitting the order
+# @app.route('/submit_order', methods=['POST'])
+# def submit_order():
+#     # Assuming you want to perform some action when the order is submitted
+#     # For now, let's print the ordered items and total price to the console
+#     for item in ordered_items:
+#         print(f"Price: ${item['price']}")
 
 
 
