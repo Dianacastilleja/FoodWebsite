@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 
-ordered_items = []
 
 # Define a dictionary to simulate user settings (replace with database interaction).
 user_settings = {
@@ -232,7 +231,7 @@ def update_contact_preference():
 
 
 # Route for All Restaurants
-
+ordered_items = []
 #Chick Fil A
 @app.route('/R1', methods=['GET', 'POST'])
 def R1():
@@ -254,8 +253,6 @@ def R1():
 #     # For now, let's print the ordered items and total price to the console
 #     for item in ordered_items:
 #         print(f"Price: ${item['price']}")
-
-
 
 
 #Jack In The Box
@@ -311,8 +308,15 @@ def checkout():
     total_price = sum(item['price'] for item in ordered_items)
     return render_template('checkout.html', ordered_items=ordered_items, total_price=total_price)
 
+# Route for the orders page
+@app.route('/orders')
+def orders():
+    return render_template('orders.html',all_orders = ordered_items)
 
 
+# Display all Orders
+def displayOrders():
+    pass
 
 with app.app_context():
     db.create_all()
