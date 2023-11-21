@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Driver Sign Up</title>
     <style>
         body {
             background-color: green;
@@ -24,6 +24,19 @@
             font-weight: bold;
         }
 
+        .login-box label {
+            display: block;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .login-box input {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 5px;
+        }
+
         .login-box .links {
             margin-top: 20px;
         }
@@ -31,13 +44,14 @@
 </head>
 <body>
     <div class="login-box">
-        <h2>Log in</h2>
+        <h2>Sign Up</h2>
         <form method="post">
             <br/><br/>
             Phone-Number:<input name="phone"required>
-            <br/><br/>
+            <!-- <br/><br/> -->
             password:<input name="password"required>
-            <br/><br/>
+            <!-- <br/><br/> -->
+            License Plate:<input name="licensePlate"required>
             <button type="Login">Submit</button>
         </form>
             {% if notInDB %} 
@@ -47,13 +61,10 @@
             {% if wrongPass %} 
             Wrong password
             {% endif %}
-
-
-
-        <div class="links">
-            <a href="/signup">Create Account</a> |
-            <a href="/">Home</a>
-        </div>
-    </div>
+     <div class="links">
+        <a href="/">Home</a> | <a href="/login">Already have an account?</a>
+    </div>  
+    </form>
+    
 </body>
 </html>

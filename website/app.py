@@ -1,37 +1,148 @@
 from flask import Flask, render_template, request, redirect
-
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
 
 ordered_items = []
 
 # Define a dictionary to simulate user settings (replace with database interaction).
 user_settings = {
-    "email": "user@example.com",
-    "address": "123 Main St",
-    "payment_method": "Credit Card",
-    "contact_preference": "Email",
-    "past_orders": ["Order 1", "Order 2", "Order 3"],
-    "favorite_restaurants": ["Restaurant A", "Restaurant B", "Restaurant C"],
+    "name": "",
+    "email": "",
+    "password": "",
+    "phone": "",
+    "creditCard": "",
+    "address": "",
+    "licensePlate": "",
+    "past_orders": ["","",""],
+    "favorite_restaurants": ["","",""]
 }
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
+db = SQLAlchemy(app)
+
+
+class Visitor(db.Model):
+    name = db.Column(db.String(100),default="name")
+    #rewards = []
+    email = db.Column(db.String(100),default="mail")
+    password = db.Column(db.String(100),default="password")
+    phone = db.Column(db.Integer, default=1, primary_key=True)
+    creditCard = db.Column(db.Integer,default=1)
+    address = db.Column(db.String(100),default="street" )
+
+    def __repr__(self):
+        return f"{self.name}"
+
+
 
 # Route for the welcome page
 @app.route('/')
 def welcome():
-    return render_template('welcome.html')
+    signedIn = False
+
+    if user_settings["name"] != "":
+        signedIn = True
+    name = user_settings["name"]
+    return render_template('welcome.html',name=name,signedIn = signedIn)
+
+
+@app.route('/map')
+def map():
+    pickUp = "UTRGV"
+    dropOff = user_settings["address"]
+    #dropOff = "art street"
+    return render_template('map.html', pickUp = pickUp, dropOff=dropOff)
+
 
 # Route for the login page
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    notInDB = False
+    wrongPass = False
 
-# Route for the signup page
-@app.route('/signup')
+
+    if request.method == 'POST':
+        phone=request.form['phone']
+        password=request.form['password']
+
+        visitor = Visitor.query.filter_by(phone=phone).first()
+
+        if (visitor == None):
+            notInDB = True
+            wrongPass = False
+
+        elif(visitor.password == password):
+            user_settings['name'] = visitor.name
+            user_settings['email'] = visitor.email
+            user_settings['phone'] = visitor.phone
+            user_settings['creditCard'] = visitor.creditCard
+            user_settings['address'] = visitor.address 
+            return redirect("/")        
+        
+        else:#(visitor.password != password)
+            notInDB = False
+            wrongPass = True
+
+    return render_template('login.html',wrongPass=wrongPass,notInDB=notInDB)
+
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    return render_template('signup.html')
+    taken = False
+    visitor = None
+    
 
-@app.route('/driver_signup')
+    if request.method == 'POST':
+        first=request.form['first']
+        last=request.form['last']
+        email=request.form['email']
+        password=request.form['password']
+        phone=request.form['phone']
+        credit=request.form['credit']
+        address = request.form['address']
+        
+        #check if user is already in database
+        visitor = Visitor.query.filter_by(phone=phone).first()
+        #visitor = Visitor.query.get(phone)
+
+        if (visitor == None):
+            visitor = Visitor(name = first + " " + last,email=email,phone=phone,creditCard=credit,password = password,address=address)
+            db.session.add(visitor)
+            db.session.commit()
+            return redirect('/login')
+        else:
+            taken = True
+    
+    return render_template('signup.html',taken=taken)
+
+@app.route('/driver_registration', methods=['GET', 'POST'])
 def driver_signup():
-    return render_template('driver_signup.html')
+
+    notInDB = False
+    wrongPass = False
+
+
+    if request.method == 'POST':
+        phone=request.form['phone']
+        password=request.form['password']
+        licensePlate = request.form['licensePlate']
+
+        visitor = Visitor.query.filter_by(phone=phone).first()
+
+        if (visitor == None):
+            notInDB = True
+            wrongPass = False
+
+        elif(visitor.password == password):
+            visitor.licensePlate = licensePlate
+            db.session.commit()
+            return redirect('/login')       
+        
+        else:#(visitor.password != password)
+            notInDB = False
+            wrongPass = True
+
+    return render_template('driver_registration.html',wrongPass=wrongPass,notInDB=notInDB)
+
 
 @app.route('/driver_register', methods=['POST'])
 def driver_register():
@@ -49,10 +160,37 @@ def driver_register():
     return redirect('/success')
 
 
-@app.route('/settings')
+@app.route('/settings',methods=['GET','POST'])
 def settings():
+    phone = user_settings["phone"]
+    visitor = Visitor.query.filter_by(phone=phone).first()
+    if request.method == 'POST':
+        new_payment_method = request.form.get('new_payment_method')
+        new_address = request.form.get('new_address')
+        new_email = request.form.get('new_email')
+
+        if new_payment_method:
+            user_settings["creditCard"] = new_payment_method
+            #Visitor.query.filter_by(phone=phone).first().creditCard = new_payment_method
+            visitor.creditCard = new_payment_method
+            db.session.commit()
+        if new_address:
+            user_settings['address'] = new_address
+            #Visitor.query.filter_by(phone=phone).first().address = new_address
+            visitor.address = new_address
+            db.session.commit()
+        if new_email:
+            user_settings["email"] = new_email
+            #Visitor.query.filter_by(phone=phone).first().email = new_email
+            visitor.email = new_email
+            db.session.commit()
+        
+
+
     # Render the settings page and pass user settings to the template
     return render_template('settings.html', user_settings=user_settings)
+
+
 
 @app.route('/update_email', methods=['POST'])
 def update_email():
@@ -62,6 +200,7 @@ def update_email():
     user_settings['email'] = new_email
     
     return redirect('/settings')
+
 
 @app.route('/update_address', methods=['POST'])
 def update_address():
@@ -158,7 +297,6 @@ def submit_order():
 
     # Clear the ordered_items list for the next order
     ordered_items.clear()
-
     return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
 
 # Route for the success page
@@ -173,5 +311,11 @@ def checkout():
     total_price = sum(item['price'] for item in ordered_items)
     return render_template('checkout.html', ordered_items=ordered_items, total_price=total_price)
 
+
+
+
+with app.app_context():
+    db.create_all()
+    
 if __name__ == '__main__':
     app.run(debug=True)
