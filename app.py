@@ -250,14 +250,6 @@ def R1():
         signedIn = True
     return render_template('R1.html', user_settings=user_settings, ordered_items=ordered_items,signedIn=signedIn)
 
-# # Route for submitting the order
-# @app.route('/submit_order', methods=['POST'])
-# def submit_order():
-#     # Assuming you want to perform some action when the order is submitted
-#     # For now, let's print the ordered items and total price to the console
-#     for item in ordered_items:
-#         print(f"Price: ${item['price']}")
-
 
 #Jack In The Box
 @app.route('/R2',  methods=['GET', 'POST'])
@@ -296,8 +288,6 @@ def R3():
 # Route for submitting the order
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
-    # Assuming you want to perform some action when the order is submitted
-    # For now, let's print the ordered items and total price to the console
     for item in ordered_items:
         print(f"Price: ${item['price']}")
 
@@ -306,13 +296,13 @@ def submit_order():
 
     # Clear the ordered_items list for the next order
     ordered_items.clear()
-    return redirect('/success')  # Redirect to a success page or any other desired page after submitting the order
+    return redirect('/success')  # Redirect to a success page after submitting the order
+
 
 # Route for the success page
 @app.route('/success')
 def success():
     return render_template('success.html')
-
 
 # Route for the checkout page
 @app.route('/checkout')
@@ -325,10 +315,6 @@ def checkout():
 def orders():
     return render_template('orders.html',all_orders = ordered_items)
 
-
-# Display all Orders
-def displayOrders():
-    pass
 
 with app.app_context():
     db.create_all()
