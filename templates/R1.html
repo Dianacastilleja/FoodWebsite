@@ -5,7 +5,10 @@
     <title>Welcome Page</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        /* Add your custom styles here */
+        .banner1 img {
+            width: 10%; /* Adjust the width as needed */
+            max-height: 50%; /* Ensure the image maintains its aspect ratio */
+        }
         .food-columns {
             display: flex;
             flex-wrap: wrap;
