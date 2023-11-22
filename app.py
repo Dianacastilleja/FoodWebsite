@@ -18,7 +18,7 @@ user_settings = {
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 db = SQLAlchemy(app)
-#ord = SQLAlchemy(app)
+
 
 class Visitor(db.Model):
     name = db.Column(db.String(100),default="name")
@@ -32,8 +32,6 @@ class Visitor(db.Model):
     def __repr__(self):
         return f"{self.name}"
 
-#class Order():
- #   pass
 
 # Route for the welcome page
 @app.route('/')
@@ -146,9 +144,6 @@ def driver_signup():
 
 @app.route('/driver_register', methods=['POST'])
 def driver_register():
-    # Process the driver registration form data, validate it, and store it in your database
-    # You will use request.form to access the form data
-    # Example code to handle the form submission
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
@@ -156,7 +151,6 @@ def driver_register():
     account_number = request.form['account_number']
     routing_number = request.form['routing_number']
 
-    # Assuming successful registration, you may want to redirect to a success page
     return redirect('/success')
 
 
@@ -186,8 +180,6 @@ def settings():
             db.session.commit()
         
 
-
-    # Render the settings page and pass user settings to the template
     return render_template('settings.html', user_settings=user_settings)
 
 
@@ -206,7 +198,6 @@ def update_email():
 def update_address():
     new_address = request.form['new_address']
     
-    # Update the home address in the database or dictionary
     user_settings['address'] = new_address
     
     return redirect('/settings')
@@ -215,7 +206,7 @@ def update_address():
 def update_payment():
     new_payment_method = request.form['new_payment_method']
     
-    # Update the payment method in the database or dictionary
+    # Update the payment method in the database
     user_settings['payment_method'] = new_payment_method
     
     return redirect('/settings')
@@ -228,7 +219,6 @@ def update_contact_preference():
     user_settings['contact_preference'] = new_contact_preference
     
     return redirect('/settings')
-
 
 
 # Route for All Restaurants
@@ -288,15 +278,21 @@ def R3():
 # Route for submitting the order
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
-    for item in ordered_items:
-        print(f"Price: ${item['price']}")
+    if request.method == 'POST':
+        # Process the order
+        for item in ordered_items:
+            print(f"Price: ${item['price']}")
 
-    total_price = sum(item['price'] for item in ordered_items)
-    print(f"Total Price: ${total_price}")
+        total_price = sum(item['price'] for item in ordered_items)
+        print(f"Total Price: ${total_price}")
 
-    # Clear the ordered_items list for the next order
-    ordered_items.clear()
-    return redirect('/success')  # Redirect to a success page after submitting the order
+        # Clear the ordered_items list for the next order
+        ordered_items.clear()
+        return redirect('/success')
+    else:
+        # Handle GET request (if needed)
+        return redirect('/checkout')
+  
 
 
 # Route for the success page

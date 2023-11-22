@@ -71,19 +71,22 @@
 <body>
     <h1>Checkout</h1>
 
-    <ul>
-        {% for item in ordered_items %}
-            <!-- Use the float filter to ensure the value is a float before rounding -->
-            <!-- Use string concatenation for formatting -->
-            <li>{{ item['food_item'] }} - ${{ "%0.2f"|format(item['price']|float) }}</li>
-        {% endfor %}
-    </ul>
+    <!-- Form wraps the list items and the button -->
+    <form method="post" action="/submit_order">
+        <ul>
+            {% for item in ordered_items %}
+                <!-- Use the float filter to ensure the value is a float before rounding -->
+                <!-- Use string concatenation for formatting -->
+                <li>{{ item['food_item'] }} - ${{ "%0.2f"|format(item['price']|float) }}</li>
+            {% endfor %}
+        </ul>
 
-    <!-- Use string concatenation for formatting total_price -->
-    <p>Total Price: ${{ "%0.2f"|format(total_price|float) }}</p>
+        <!-- Use string concatenation for formatting total_price -->
+        <p>Total Price: ${{ "%0.2f"|format(total_price|float) }}</p>
 
-    <!-- Submit order button with onclick event to trigger the redirection -->
-    <button type="submit" onclick="redirectToSuccessPage()">Submit Order</button>
+        <!-- Submit order button -->
+        <button type="submit" onclick="redirectToSuccessPage()">Submit Order</button>
+    </form>
 
 </body>
 
