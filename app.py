@@ -292,7 +292,7 @@ def submit_order():
     else:
         # Handle GET request (if needed)
         return redirect('/checkout')
-  
+
 
 
 # Route for the success page
